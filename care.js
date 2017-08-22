@@ -72,9 +72,9 @@ screen.key(['p', 'C-p'], function(ch, key) {
     pomodoroObject.stop();
     inPomodoroMode = false;
     doTheTweets();
-    parrotBox.removeLabel('');
+    // parrotBox.removeLabel('');
   } else {
-    parrotBox.setLabel(' 🍅 ');
+    // parrotBox.setLabel(' 🍅 ');
     inPomodoroMode = true;
     pomodoroHandlers.onTick()
   }
@@ -87,7 +87,7 @@ var weatherBox = grid.set(0, 8, 2, 4, blessed.box, makeScrollBox(' 🌤 '));
 var todayBox = grid.set(0, 0, 6, 6, blessed.box, makeScrollBox(' 📝  Today '));
 var weekBox = grid.set(6, 0, 6, 6, blessed.box, makeScrollBox(' 📝  Week '));
 var commits = grid.set(0, 6, 6, 2, contrib.bar, makeGraphBox('Commits'));
-var parrotBox = grid.set(6, 6, 6, 6, blessed.box, makeScrollBox(''));
+// var parrotBox = grid.set(6, 6, 6, 6, blessed.box, makeScrollBox(''));
 
 var tweetBoxes = {}
 tweetBoxes[config.twitter[1]] = grid.set(2, 8, 2, 4, blessed.box, makeBox(' 💖 '));
@@ -133,11 +133,11 @@ function doTheTweets() {
         return;
       }
       twitterbot.getTweet(config.twitter[which]).then(function(tweet) {
-        parrotBox.content = getAnsiArt(tweet.text)
+        // parrotBox.content = getAnsiArt(tweet.text)
         screen.render();
       },function(error) {
         // Just in case we don't have tweets.
-        parrotBox.content = getAnsiArt('Hi! You\'re doing great!!!')
+        // parrotBox.content = getAnsiArt('Hi! You\'re doing great!!!')
         screen.render();
       });
     } else {
@@ -343,7 +343,7 @@ var pomodoroHandlers = {
     var content = `In Pomodoro Mode: ${remainingTime} ${statusText}`;
     var metaData = `Duration: ${pomodoroObject.getRunningDuration()} Minutes,  Break Time: ${pomodoroObject.getBreakDuration()} Minutes\n`;
     metaData += 'commands: \n s - start/pause/resume \n e - stop \n u - update duration \n b - update break time';
-    parrotBox.content = getAnsiArt(content) + metaData;
+    // parrotBox.content = getAnsiArt(content) + metaData;
     screen.render();
   },
 
